@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日任務規劃 - Daily Planner</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 標題區域 -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title">📋 每日任務規劃</h1>
+                <p class="subtitle" id="todayDate"></p>
+            </div>
+        </header>
+
+        <!-- 主要內容 -->
+        <main class="main-content">
+            <!-- 新增任務區域 -->
+            <section class="add-task-section">
+                <h2 class="section-title">新增今日任務</h2>
+                <div class="add-task-container">
+                    <div class="input-group">
+                        <input 
+                            type="text" 
+                            id="taskInput" 
+                            class="task-input" 
+                            placeholder="輸入新任務..."
+                            autocomplete="off"
+                        >
+                        <select id="prioritySelect" class="priority-select">
+                            <option value="low">🟢 低優先級</option>
+                            <option value="medium" selected>🟡 中優先級</option>
+                            <option value="high">🔴 高優先級</option>
+                        </select>
+                    </div>
+                    <button id="addTaskBtn" class="btn btn-primary">+ 新增任務</button>
+                </div>
+            </section>
+
+            <!-- 進度統計區域 -->
+            <section class="progress-section">
+                <div class="progress-card">
+                    <div class="progress-header">
+                        <h3>今日進度</h3>
+                        <span class="progress-percentage" id="progressPercentage">0%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                    <div class="progress-stats">
+                        <div class="stat">
+                            <span class="stat-label">已完成</span>
+                            <span class="stat-value" id="completedCount">0</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">總任務</span>
+                            <span class="stat-value" id="totalCount">0</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 任務列表區域 -->
+            <section class="tasks-section">
+                <!-- 待完成任務 -->
+                <div class="tasks-container">
+                    <h2 class="section-title">待完成任務</h2>
+                    <div id="tasksList" class="tasks-list">
+                        <div class="empty-state">
+                            <p class="empty-message">✨ 還沒有任務，先放鬆一下吧！</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 已完成任務 -->
+                <div class="tasks-container">
+                    <h2 class="section-title">已完成任務</h2>
+                    <div id="completedList" class="tasks-list">
+                        <div class="empty-state">
+                            <p class="empty-message">🎯 完成的任務會顯示在這裡</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- 頁腳 -->
+        <footer class="footer">
+            <p>&copy; 2024 每日任務規劃 | Made with ❤️ for productivity</p>
+        </footer>
+    </div>
+
+    <!-- 編輯任務的彈出框 -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>編輯任務</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input 
+                    type="text" 
+                    id="editTaskInput" 
+                    class="task-input modal-input"
+                    placeholder="編輯任務內容..."
+                >
+                <select id="editPrioritySelect" class="priority-select modal-select">
+                    <option value="low">🟢 低優先級</option>
+                    <option value="medium">🟡 中優先級</option>
+                    <option value="high">🔴 高優先級</option>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelEditBtn">取消</button>
+                <button class="btn btn-primary" id="saveEditBtn">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
